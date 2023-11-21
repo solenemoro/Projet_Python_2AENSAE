@@ -485,20 +485,20 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 233,
-   "id": "a5e3d5b9-ec9d-417c-81db-39a8cd1706f9",
+   "execution_count": 239,
+   "id": "45431b26-cbc2-43e1-9dc1-c85f93e3e30f",
    "metadata": {},
    "outputs": [],
    "source": [
     "'''We save this dataframe in a excel file \"Notes_arrondissements\" '''\n",
-    "writer=pandas.ExcelWriter(\"Notes_arrondissements.xlsx\")\n",
-    "df_marks_arrondissements.to_excel(writer)"
+    "name=\"Notes_arrondissements.xlsx\"\n",
+    "df_marks_arrondissements.to_excel(name)"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "45431b26-cbc2-43e1-9dc1-c85f93e3e30f",
+   "id": "07aa6c6e-f667-491b-a524-f8f89123e08d",
    "metadata": {},
    "outputs": [],
    "source": []
