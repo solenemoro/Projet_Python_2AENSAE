@@ -1,4 +1,4 @@
-import pandas
+import pandas as pd
 import requests
 import io
 import zipfile
@@ -34,6 +34,34 @@ then add(CODE_IRIS)
 
 # 'Paris 1er Arrondissement' a traiter a part
 
+liste1 = []
+
+file = pd.read_excel('reference_IRIS_geo2023.xlsx')
+truc = []
+for row in file:
+    if file[:,LIBCOM] == 'Paris 1er Arrondissement':
+        truc.append(file[:,CODE_IRIS])
+liste1.append(truc)
+print(truc)
+print(liste1)
+del(truc)
+
+"""
+with open('reference_IRIS_geo2023.xlsx', newline='') as file:
+    reader = csv.DictReader(csvfile)
+    truc = []
+    for row in reader:
+        if file['LIBCOM'] == 'Paris 1er Arrondissement':
+            truc.append(file['CODE_IRIS'])
+    liste1.append(truc)
+    print(truc)
+    print(liste1)
+    del(truc)
+"""
+
+# Other arrondissements
+
+"""
 liste = []
 with open('reference_IRIS_geo2023.xlsx', newline='') as csvfile:
     for i in range(2,21):
@@ -46,6 +74,7 @@ with open('reference_IRIS_geo2023.xlsx', newline='') as csvfile:
                     truc.append( ['CODE_IRIS'])
             liste.append(truc)
             del(truc)
+"""
 
 # Probleme ligne 44
 
