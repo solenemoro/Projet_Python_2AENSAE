@@ -1,6 +1,6 @@
 import pandas as pd
 
-# How to analyze all these stuff
+# How to analyze all this stuff
 
 file = pd.read_csv('bpe21_ensemble_xy.csv', sep=";")
 
