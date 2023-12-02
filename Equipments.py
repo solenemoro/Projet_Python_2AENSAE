@@ -3,7 +3,7 @@ import requests
 import io
 import zipfile
 
-##### We must get the IRIS corresponding with each arrondissement 
+########## We must get the IRIS corresponding with each arrondissement
 
 ##### Getting the file containing matchings between arrondissements and IRIS
 
@@ -43,7 +43,6 @@ print(file.columns)
 
 Arr1 = file[file['LIBCOM'] == 'Paris 1er Arrondissement']
 liste1 = pd.Series.tolist(Arr1['CODE_IRIS'])
-print(liste1)
 
 ##### The same with all the other arrondissements
 
@@ -61,3 +60,22 @@ print(dicIRIS)
 # We obtain a dictionary with the name of the arrondissement as a key 
 # and a list with the numbers of IRIS corresponding as a value
 """
+
+########################################################################
+
+##### Reading the file with information about equipments
+
+file = pd.read_csv('bpe21_ensemble_xy.csv', sep=";")
+
+BPE = file.copy()
+BPE = BPE.loc[BPE['DEP'] == 75]
+
+##### Number of "commerces alimentaires" (B2) by arrondissement
+
+n = 0 # Number initialized
+for iris in dicIRIS['Paris 1er Arrondissement']:
+    col = BPE[(BPE['DCIRIS'] == iris) & (BPE['SDOM'] == 'B2')]
+    n += len(col) # number of lines
+    
+print("Il y a" + n + "commerces alimentaires dans le 1er arrondissement.")
+

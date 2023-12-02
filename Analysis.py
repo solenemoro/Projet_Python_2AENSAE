@@ -2,18 +2,24 @@ import pandas as pd
 
 # How to analyze all these stuff
 
-BPE = pd.read_csv('bpe21_ensemble_xy.csv', sep=";")
+file = pd.read_csv('bpe21_ensemble_xy.csv', sep=";")
 
 # print(BPE)
 
-sortedBPE = BPE.copy()
+BPE = file.copy()
 
-sortedBPE = sortedBPE.loc[sortedBPE['DEP'] == 75]
+BPE = BPE.loc[BPE['DEP'] == 75]
 
 
 # print(sortedBPE)
 
-# open('bpe21_ensemble_xy.csv', mode='+', sep=";")
+##### Number of "commerces alimentaires" (B2) by arrondissement
+
+n = 0 # Number initialized
+for iris in dicIRIS['Paris 1er Arrondissement']:
+    col = BPE[(BPE['DCIRIS'] == iris) & (BPE[SDOM] == 'B2')]
+    n += len(col) # number of lines
+    
 
 
 

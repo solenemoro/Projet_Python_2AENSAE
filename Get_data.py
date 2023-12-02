@@ -28,6 +28,9 @@ r = requests.get(url)
 z = zipfile.ZipFile(io.BytesIO(r.content))
 z.extractall()
 
+##### Reducing the file to keep only one department
+
+bpe21_ens
 
 """
 # cf https://gist.github.com/ZeccaLehn/140edc75ff9d2c7cf9f660028763c9f5
