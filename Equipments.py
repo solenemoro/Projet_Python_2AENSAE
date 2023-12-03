@@ -63,13 +63,8 @@ print(dicIRIS)
 
 ########################################################################
 
-##### Reading the file with information about equipments
-
 dicType = {'BV2012': str, 'DCIRIS': str, 'DEP': str, 'DEPCOM': str, 'DOM': str, 'EPCI': str, 'SDOM': str}
-file = pd.read_csv('bpe21_ensemble_xy.csv', sep=";", dtype = dicType)
-
-BPE = file.copy()
-BPE = BPE.loc[BPE['DEP'] == '75']
+BPE = pd.read_csv('bpeParis.csv', sep=",", dtype = dicType)
 
 ##### Number of "commerces alimentaires" (B2) by arrondissement
 
@@ -127,12 +122,46 @@ Notes_arr = pd.read_excel('Notes_arrondissements.xlsx')
 
 from sklearn.linear_model import LinearRegression
 import numpy as np
+import matplotlib.pyplot as plt
 
-listB1 = np.array(dicB1.values())
-listB2 = np.array(dicB2.values())
+listB1 = pd.DataFrame(dicB1.values())
+listB2 = pd.DataFrame(dicB2.values())
 B1_B2 = pd.concat([listB1,listB2], axis=1)
-notes = pd.Series.tolist(Notes_arr['Commerces'])
-reg = LinearRegression().fit(B1_B2, notes)
+notes = pd.Series(Notes_arr['Commerces'])
+notes = notes.str.replace(',', '.')
+notes = pd.Series.tolist(notes)
+
+"""
+# Split the data into training/testing sets
+X_train = B1_B2[:-10]
+X_test = B1_B2[-10:]
+
+# Split the targets into training/testing sets
+y_train = notes[:-10]
+y_test = notes[-10:]
+
+reg = LinearRegression().fit(X_train, y_train)
+
+# Make predictions using the testing set
+y_pred = reg.predict(X_test)
+
+# Plot outputs
+import matplotlib.pyplot as plt
+
+plt.scatter(X_test, y_test, color="black")
+plt.plot(X_test, y_pred, color="blue", linewidth=3)
+
+"""
+
+reg = LinearRegression().fit(listB2, notes)
+
+y_pred = reg.predict(listB2)
+
+plot1 = plt.scatter(listB2, notes, color="black")
+plot2 = plt.plot(listB2, y_pred, color="blue", linewidth=3)
+plt.show()
+
+
 
 
 
