@@ -117,7 +117,8 @@ for i in range(2,21):
 
 ########################################################################
 
-##### Linear regression
+########## Linear regression
+
 Notes_arr = pd.read_excel('Notes_arrondissements.xlsx')
 
 from sklearn.linear_model import LinearRegression
@@ -130,6 +131,51 @@ B1_B2 = pd.concat([listB1,listB2], axis=1)
 notes = pd.Series(Notes_arr['Commerces'])
 notes = notes.str.replace(',', '.')
 notes = pd.Series.tolist(notes)
+
+##### Only with B2
+
+reg = LinearRegression().fit(listB2, notes)
+
+y_pred = reg.predict(listB2)
+
+plt.scatter(listB2, notes, color="black")
+plt.plot(listB2, y_pred, color="blue", linewidth=3)
+plt.xlabel('Nombre de commerces alimentaires')
+plt.ylabel('Note donnée par les habitants')
+plt.title('Une régression')
+plt.savefig('Une régression')
+plt.close()
+
+"""
+plt.show() # Seems useless
+
+# Not very satisfactory since y_pred is surprisingly decreasing
+"""
+
+# Splitting the group in 2
+
+# Split the data into training/testing sets
+X_train = listB2[:-10]
+X_test = listB2[-10:]
+
+# Split the targets into training/testing sets
+y_train = notes[:-10]
+y_test = notes[-10:]
+
+reg = LinearRegression().fit(X_train, y_train)
+
+# Make predictions using the testing set
+y_pred2 = reg.predict(X_test)
+
+plt.scatter(X_test, y_test, color="black")
+plt.plot(X_test, y_pred2, color="blue", linewidth=3)
+plt.xlabel('Nombre de commerces alimentaires')
+plt.ylabel('Note donnée par les habitants')
+plt.title('Une 2ème régression')
+plt.savefig('Une 2ème régression')
+plt.close()
+
+##### Regression with B1 and B2
 
 """
 # Split the data into training/testing sets
@@ -153,13 +199,67 @@ plt.plot(X_test, y_pred, color="blue", linewidth=3)
 
 """
 
-reg = LinearRegression().fit(listB2, notes)
+##### Idea: industrializing to have all types of equipments concerned by B, i.e. "commerces"
 
-y_pred = reg.predict(listB2)
+##### Number of each type of commerce by arrondissement
 
-plot1 = plt.scatter(listB2, notes, color="black")
-plot2 = plt.plot(listB2, y_pred, color="blue", linewidth=3)
-plt.show()
+n1 = 0 # Number initialized
+
+"""
+listType = []
+for j in range(1,4):
+    type = B10 + str
+"""
+
+listType = ['B101', 'B102', 'B103', 'B201', 'B202', 'B203', 'B204', 'B205', 'B206', 'B301', 'B302', 'B303', 'B304', 'B305', 'B306', 'B307', 'B308', 'B309', 'B310', 'B311', 'B312', 'B313', 'B314', 'B315', 'B316']
+
+list1 = []
+for type in listType:
+    for iris in dicIRIS['Paris 1er Arrondissement']:
+        col = BPE[(BPE['DCIRIS'] == iris) & (BPE['TYPEQU'] == type)]
+        n1 += len(col) # number of lines
+    list1.append(n1)
+    n1 = 0
+
+dicB = {'1er Arrondissement': list1}
+
+n = 0
+for arr in range(2,21):
+    key_arr = 'Paris ' + str(arr) + 'e Arrondissement'
+    for type in listType:
+        listBType = []
+        for iris in dicIRIS[key_arr]:
+            col = BPE[(BPE['DCIRIS'] == iris) & (BPE['TYPEQU'] == type)]
+            n += len(col)
+        listBType.append(n)
+        n = 0
+    dicB[str(arr) + 'e Arrondissement'] = listBType
+
+
+Commerces_precis = pd.DataFrame(dicB, index = listType)
+
+"""
+print("Il y a " + str(n1) + " commerces alimentaires dans le 1er arrondissement.")
+# We obtain 
+"""
+
+"""
+dicB2 = {'1er Arrondissement': n1}
+
+n = 0
+for i in range(2,21):
+    key_arr = 'Paris ' + str(i) + 'e Arrondissement'
+    for iris in dicIRIS[key_arr]:
+        col = BPE[(BPE['DCIRIS'] == iris) & (BPE['SDOM'] == 'B2')]
+        n += len(col)
+    dicB2[str(i) + 'e Arrondissement'] = n
+    n = 0
+"""
+
+"""
+print(dicB2)
+# key: number of arrondissement ; value: number of "commerce" alimentaires"
+"""
 
 
 
