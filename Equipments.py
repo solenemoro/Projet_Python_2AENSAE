@@ -94,7 +94,7 @@ for i in range(2,21):
 
 """
 print(dicB2)
-# key: number of arrondissement ; value: number of "commerce" alimentaires"
+# key: number of arrondissement ; value: number of "commerces alimentaires"
 """
 
 ##### Number of "Grandes surfaces" (B1) by arrondissement
@@ -119,6 +119,7 @@ for i in range(2,21):
 
 ########## Linear regression
 
+"""
 Notes_arr = pd.read_excel('Notes_arrondissements.xlsx')
 
 from sklearn.linear_model import LinearRegression
@@ -145,6 +146,7 @@ plt.ylabel('Note donnée par les habitants')
 plt.title('Une régression')
 plt.savefig('Une régression')
 plt.close()
+"""
 
 """
 plt.show() # Seems useless
@@ -152,6 +154,7 @@ plt.show() # Seems useless
 # Not very satisfactory since y_pred is surprisingly decreasing
 """
 
+"""
 # Splitting the group in 2
 
 # Split the data into training/testing sets
@@ -174,6 +177,7 @@ plt.ylabel('Note donnée par les habitants')
 plt.title('Une 2ème régression')
 plt.savefig('Une 2ème régression')
 plt.close()
+"""
 
 ##### Regression with B1 and B2
 
@@ -226,8 +230,8 @@ dicB = {'1er Arrondissement': list1}
 n = 0
 for arr in range(2,21):
     key_arr = 'Paris ' + str(arr) + 'e Arrondissement'
+    listBType = []
     for type in listType:
-        listBType = []
         for iris in dicIRIS[key_arr]:
             col = BPE[(BPE['DCIRIS'] == iris) & (BPE['TYPEQU'] == type)]
             n += len(col)
@@ -236,7 +240,9 @@ for arr in range(2,21):
     dicB[str(arr) + 'e Arrondissement'] = listBType
 
 
-Commerces_precis = pd.DataFrame(dicB, index = listType)
+Commerces_precis = pd.DataFrame(dicB)
+Commerces_precis.set_axis(listType, axis = 0)
+Commerces_precis.to_csv('Commerces.csv', index = False)
 
 """
 print("Il y a " + str(n1) + " commerces alimentaires dans le 1er arrondissement.")
