@@ -32,10 +32,16 @@ y_pred = reg.predict(X_test)
 # The coefficients
 print("Coefficients: \n", reg.coef_)
 # The mean squared error
-print("Mean squared error: \n", sklearn.metrics.mean_squared_error(y_test, y_pred))
+# print("Mean squared error: \n", sklearn.metrics.mean_squared_error(y_test, y_pred))
 # Problem: needs numeric
 # The coefficient of determination: 1 is perfect prediction
-print("Coefficient of determination: \n", sklearn.metrics.r2_score(y_test, y_pred))
+# print("Coefficient of determination: \n", sklearn.metrics.r2_score(y_test, y_pred))
+
+# disp = sklearn.metrics.PredictionErrorDisplay.from_predictions(y_test, y_pred)
+# plt.savefig('Prediction Error for B')
+# plt.close()
+
+# Nichts......
 
 """
 plt.scatter(X_test, y_test, color="black")
