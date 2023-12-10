@@ -4,6 +4,8 @@ from sklearn.linear_model import LinearRegression
 import numpy as np
 import matplotlib.pyplot as plt
 
+##### Reading the excel file containing the grades obtained by each arrondissement in varied fields
+
 Notes_arr = pd.read_excel('Notes_arrondissements.xlsx')
 notes = pd.Series(Notes_arr['Commerces'])
 notes = notes.str.replace(',', '.')

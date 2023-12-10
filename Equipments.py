@@ -8,7 +8,6 @@ import zipfile
 ##### Getting the file containing matchings between arrondissements and IRIS
 
 url_1 = 'https://www.insee.fr/fr/statistiques/fichier/2017499/reference_IRIS_geo2023.zip'
-
 r1 = requests.get(url_1)
 z1 = zipfile.ZipFile(io.BytesIO(r1.content))
 z1.extractall()
