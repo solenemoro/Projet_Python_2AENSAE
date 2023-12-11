@@ -208,12 +208,6 @@ plt.plot(X_test, y_pred, color="blue", linewidth=3)
 
 n1 = 0 # Number initialized
 
-"""
-listType = []
-for j in range(1,4):
-    type = B10 + str
-"""
-
 listType = ['B101', 'B102', 'B103', 'B201', 'B202', 'B203', 'B204', 'B205', 'B206', 'B301', 'B302', 'B303', 'B304', 'B305', 'B306', 'B307', 'B308', 'B309', 'B310', 'B311', 'B312', 'B313', 'B314', 'B315', 'B316']
 
 list1 = []
