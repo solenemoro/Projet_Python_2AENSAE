@@ -14,7 +14,7 @@ Données utilisées :
 -   reference_IRIS_geo2023.xlsx permet d'établir un lien entre les IRIS (qui sont l'unité de base de la BPE) et les arrondissements (qui sont l'unité de base du fichier de notes)
 
 
-Le code Python est réparti dans différents fichiers Python et notebooks Jupyter. Il est recommandé de suivre l'ordre suivant pour l'éxecution du code :
+Le code Python est réparti dans différents fichiers Python et notebooks Jupyter. Il est recommandé de suivre l'ordre suivant pour l'exécution du code :
 
 
 ### Partie 1 : Webscrapping (Ne pas exécuter car l'exécution dure 1h)
