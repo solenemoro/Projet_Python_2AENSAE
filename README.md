@@ -47,3 +47,8 @@ Nous procédons ici à une analyse descriptive des notes moyennes données à la
 1. Equipements.ipynb
 
 Nous tentons d'établir des corrélations entre le nombre d'équipements et les notes données dans des thématiques variées : commerce, éducation, infrastructures de santé et moyens de transports. Pour cela, nous utilisons des régressions linéaires en essayant diverses variables explicatives à un niveau plus ou moins agrégé.
+
+## Les limites :
+Nos résultats comportent des biais . En effet, les notes données aux arrondissements sont extraites du site ville-ideale.fr et non d'une enquête officielle. De plus, certains arrondissements ont été notés par une vingtaine de personnes seulement donc un très faible nombre pour pouvoir faire des statistiques. Aussi, les personnes qui prennent le temps d'aler noter leur arrondissement sur le site internet sont peut-être celles qui sont les plus satisfaites ou au contraire les moins satisfaites de leur quartier, et ne représentent pas forcémment la population de ce quartier. 
+Enfin, l'appréciation de leur quartier par les parisiens dépend de beaucoup de chose et il faudrait une analyse plus complexe. Nous avons choisi ici de nous concentrer sur quelques variables.
+
